@@ -12,7 +12,7 @@ public class HealthController {
     @GetMapping("/health")
     public ResponseEntity<String> checkApi() {
 
-        return ResponseEntity.ok("The API is working ok!");
+        return ResponseEntity.ok("<h1>The API is working ok!</h1>");
 
     }
 
