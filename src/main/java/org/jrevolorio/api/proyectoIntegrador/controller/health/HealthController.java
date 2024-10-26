@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
 
     @GetMapping("/health")
-    public ResponseEntity<String> getHealth() {
+    public ResponseEntity<String> checkApi() {
 
         return ResponseEntity.ok("The API is working ok!");
 
