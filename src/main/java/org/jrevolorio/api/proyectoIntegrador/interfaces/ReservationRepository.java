@@ -1,15 +1,15 @@
 package org.jrevolorio.api.proyectoIntegrador.interfaces;
 
 import org.jrevolorio.api.proyectoIntegrador.model.Reservation;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface ReservationRepository {
+@Repository
+public interface ReservationRepository extends MongoRepository<Reservation, Integer> {
 
-    Reservation createReservation(Reservation reservation);
-    Reservation getReservationById(Long id);
-    List<Reservation> getReservations();
-    Reservation updateReservation(Long id, Reservation reservation);
-    void deleteReservation(Long id);
+    Optional<Reservation> findById(int idReservation);
 
 }

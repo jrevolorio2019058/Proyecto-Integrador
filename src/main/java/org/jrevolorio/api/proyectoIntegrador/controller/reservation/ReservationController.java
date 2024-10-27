@@ -21,13 +21,10 @@ public class ReservationController {
     }
 
     @GetMapping("/getReservation/{id}")
-    public ResponseEntity<Reservation> getReservation(@PathVariable Long id) {
-        Reservation reservation = reservationService.getReservationById(id);
-        if (reservation != null) {
-            return ResponseEntity.ok(reservation);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Reservation> getReservation(@PathVariable int idReservation) {
+        return reservationService.getReservationById(idReservation)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/getReservations")
@@ -36,19 +33,14 @@ public class ReservationController {
     }
 
     @PutMapping("/updateReservation/{id}")
-    public ResponseEntity<Reservation> updateReservation(@PathVariable Long id, @RequestBody Reservation reservation) {
-        Reservation updatedReservation = reservationService.updateReservation(id, reservation);
-        if (updatedReservation != null) {
-            return ResponseEntity.ok(updatedReservation);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Reservation> updateReservation(@PathVariable int idReservation, @RequestBody Reservation reservation) {
+        Reservation updatedReservation = reservationService.updateReservation(idReservation, reservation);
+        return updatedReservation != null ? ResponseEntity.ok(updatedReservation) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/deleteReservation/{id}")
-    public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
-        reservationService.deleteReservation(id);
+    public ResponseEntity<Void> deleteReservation(@PathVariable int idReservation) {
+        reservationService.deleteReservation(idReservation);
         return ResponseEntity.noContent().build();
     }
-
 }

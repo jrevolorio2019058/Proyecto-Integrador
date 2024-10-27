@@ -2,102 +2,68 @@ package org.jrevolorio.api.proyectoIntegrador.service;
 
 import org.jrevolorio.api.proyectoIntegrador.interfaces.UserRepository;
 import org.jrevolorio.api.proyectoIntegrador.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserService implements UserRepository {
+public class UserService {
 
-    private final HashMap<Long, User> userStorage = new HashMap<>();
+    @Autowired
+    private UserRepository userRepository;
 
-    @Override
-    public User createUser(User user){
-
-        Long id = Long.parseLong(String.valueOf(user.getDPI()));
-
-        userStorage.put(id, user);
-
-        return user;
-
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
-    @Override
-    public User getUserByDPI(Long dpi){
-
-        return userStorage.get(dpi);
-
+    public Optional<User> getUserByDPI(Long dpi) {
+        return userRepository.findById(dpi);
     }
 
-    @Override
-    public List<User> getAllUsers(){
-
-        return new ArrayList<>(userStorage.values());
-
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    @Override
-    public User updateUser(Long dpi, User user){
+    public User updateUser(Long dpi, User user) {
 
-        if (userStorage.containsKey(dpi)) {
+        Optional<User> existingUserOpt = userRepository.findById(dpi);
 
-            User existUser = userStorage.get(dpi);
+        if (existingUserOpt.isPresent()) {
 
-            if(user.getUsername() != null){
+            User existingUser = existingUserOpt.get();
 
-                existUser.setUsername(user.getUsername());
-
+            if (user.getUsername() != null) {
+                existingUser.setUsername(user.getUsername());
+            }
+            if (user.getEmail() != null) {
+                existingUser.setEmail(user.getEmail());
+            }
+            if (user.getPassword() != null) {
+                existingUser.setPassword(user.getPassword());
+            }
+            if (user.getAge() != 0) {
+                existingUser.setAge(user.getAge());
+            }
+            if (user.getCellphone() != null) {
+                existingUser.setCellphone(user.getCellphone());
             }
 
-            if(user.getEmail() != null){
-
-                existUser.setEmail(user.getEmail());
-
-            }
-
-            if(user.getPassword() != null){
-
-                existUser.setPassword(user.getPassword());
-
-            }
-
-            if(user.getAge() != 0){
-
-                existUser.setAge(user.getAge());
-
-            }
-
-            if(user.getCellphone() != null){
-
-                existUser.setCellphone(user.getCellphone());
-
-            }
-
-            existUser.setDPI(dpi);
-
-            userStorage.put(dpi, existUser);
-
-            return existUser;
+            return userRepository.save(existingUser);
 
         }
-
         return null;
-
     }
 
-    @Override
-    public void deleteUser(Long dpi){
-
-        userStorage.remove(dpi);
-
+    public void deleteUser(Long dpi) {
+        userRepository.deleteById(dpi);
     }
 
-    public boolean userExists(Long dpi){
-
-        return userStorage.containsKey(dpi);
-
+    public boolean userExists(Long dpi) {
+        return userRepository.existsById(dpi);
     }
 
 }
