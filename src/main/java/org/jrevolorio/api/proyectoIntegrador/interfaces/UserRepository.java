@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface UserRepository extends MongoRepository<User, Long> {
 
     Optional<User> findByDPI(Long DPI);
+    User findByUsername(String username);
 
 }
