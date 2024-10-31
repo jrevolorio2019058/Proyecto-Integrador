@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "86e0d3f6-22a6-461e-bd8e-70e40ff3a60b",
+		"name": "Proyecto Integrador",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32787267"
+	},
+	"item": [
+		{
+			"name": "First Task",
+			"item": [
+				{
+					"name": "Check Api",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/proyectoIntegrador/v1/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"proyectoIntegrador",
+								"v1",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User And Reservation",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"auth": {
+									"type": "jwt",
+									"jwt": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "algorithm",
+											"value": "HS256",
+											"type": "string"
+										},
+										{
+											"key": "isSecretBase64Encoded",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "payload",
+											"value": "{}",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "queryParamKey",
+											"value": "token",
+											"type": "string"
+										},
+										{
+											"key": "header",
+											"value": "{}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMDM1MDM0NiwiZXhwIjoxNzMwMzUzOTQ2fQ.I_vjMSnJFnEbtoRs8UfZRc9HC4hmfL7TTmrleccqiydn1VlDU9B_NxxQla_DfOB4-v-ABiZwlnvGnrhd4CMUXQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"dpi\": 3603527070101,\r\n    \"username\": \"jrevolorio\",\r\n    \"password\": \"admin\",\r\n    \"email\": \"jrevolorio@gmail.com\",\r\n    \"age\": 18,\r\n    \"cellphone\": \"49483571\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/user/createUser",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"proyectoIntegrador",
+										"v1",
+										"user",
+										"createUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMDM1MDM0NiwiZXhwIjoxNzMwMzUzOTQ2fQ.I_vjMSnJFnEbtoRs8UfZRc9HC4hmfL7TTmrleccqiydn1VlDU9B_NxxQla_DfOB4-v-ABiZwlnvGnrhd4CMUXQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/user/getUsers",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"proyectoIntegrador",
+										"v1",
+										"user",
+										"getUsers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/user/getUser/3603527070101",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"proyectoIntegrador",
+										"v1",
+										"user",
+										"getUser",
+										"3603527070101"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"username\": \"JorgeRevolorio\",\r\n    \"email\": \"jorgerevolorio@gmail.com\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/user/updateUser/3603527070101",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"proyectoIntegrador",
+										"v1",
+										"user",
+										"updateUser",
+										"3603527070101"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/v1/user/deleteUser/3603527070101",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"v1",
+										"user",
+										"deleteUser",
+										"3603527070101"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reservation",
+					"item": [
+						{
+							"name": "Create Reservation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"dpi\": 36035270101,\r\n    \"reservationDate\": \"2024-10-30T14:30:00\",\r\n    \"description\": \"Prueba\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/reservation/createReservation",
+									"protocol": "https",
+									"host": [
+										"proyecto-integrador-1-hvdf",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"proyectoIntegrador",
+										"v1",
+										"reservation",
+										"createReservation"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://proyecto-integrador-1-hvdf.onrender.com/proyectoIntegrador/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"proyecto-integrador-1-hvdf",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"proyectoIntegrador",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
