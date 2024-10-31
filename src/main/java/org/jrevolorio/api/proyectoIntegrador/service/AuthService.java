@@ -22,9 +22,17 @@ public class AuthService {
 
     public String authenticate(LoginDTO loginDTO) {
 
+        if (loginDTO == null || loginDTO.getUsername() == null || loginDTO.getPassword() == null) {
+            throw new IllegalArgumentException("Credenciales Invalidas");
+        }
+
         User user = userRepository.findByUsername(loginDTO.getUsername());
 
-        if(user != null && passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+        if (user == null) {
+            return null;
+        }
+
+        if(passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
 
             return jwtAuthenticationFilter.generateToken(user.getUsername());
 

@@ -20,8 +20,6 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
