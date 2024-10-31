@@ -44,8 +44,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
         String authHeader = request.getHeader("Authorization");
 
-        String railwayLoginURL = "https://proyecto-integrador-production-cbbf.up.railway.app/v1/auth/login";
-
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             try {
@@ -67,7 +65,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                 return;
             }
         } else {
-            if (request.getRequestURI().equals("/proyectoIntegrador/v1/auth/login") || request.getRequestURL().toString().equals(railwayLoginURL)) {
+            if (request.getRequestURI().equals("/proyectoIntegrador/v1/auth/login")) {
                 filterChain.doFilter(request, response);
                 return;
             }

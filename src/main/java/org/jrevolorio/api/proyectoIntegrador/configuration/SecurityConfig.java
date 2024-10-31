@@ -38,7 +38,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/proyectoIntegrador/v1/auth/login", "https://proyecto-integrador-production-cbbf.up.railway.app/v1/auth/login").permitAll()
+                        .requestMatchers("/proyectoIntegrador/v1/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
